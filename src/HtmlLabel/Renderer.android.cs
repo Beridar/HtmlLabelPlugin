@@ -84,7 +84,13 @@ namespace LabelHtml.Forms.Plugin.Droid
 			// Android's TextView doesn't handle <ul>s, <ol>s and <li>s 
 			// so it replaces them with <ulc>, <olc> and <lic> respectively.
 			// Those tags will be handles by a custom TagHandler
-			customHtml = customHtml.Replace("ul>", "ulc>").Replace("ol>", "olc>").Replace("li>", "lic>");
+			customHtml = customHtml
+				.Replace("ul>", "ulc>")
+				.Replace("UL>", "ulc>")
+				.Replace("ol>", "olc>")
+				.Replace("OL>", "olc>")
+				.Replace("li>", "lic>")
+				.Replace("LI>", "lic>");
 
 			Control.SetIncludeFontPadding(false);
 
