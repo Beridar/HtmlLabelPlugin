@@ -1,16 +1,16 @@
-# Html Label Plugin for Xamarin.Forms
+# HTML Label Plugin for Xamarin.Forms
 Use this Xamarin.Forms plugin to display HTML content into a label.
 
-** **NEW YEAR UPDATE** **
+** **MID YEAR UPDATE** **
 
-* Xamarin.Forms 2.5.0;
-* .NET Standard;
-* UWP partial support;
-* Added support for: FontAttributes, FontFamily, FontSize, TextColor and HorizontalTextAlignment;
-* HyperLinks support.
+* Xamarin.Forms 3.0
+* IsHtml and RemoveHtmlTags properties removed
+* HtmlAgilityPack dependency removed
+* Navigating and Navitated events added when users tap on links
+* Namespace and assembly name changed
 
 ## Setup
-* Available on NuGet: https://www.nuget.org/packages/Xam.Plugin.HtmlLabel
+* Available on NuGet: https://www.nuget.org/packages/Xam.Plugin.HtmlLabel ![](https://img.shields.io/badge/nuget-v3.0.1-blue.svg) ![](https://matteobortolazzo.visualstudio.com/_apis/public/build/definitions/35196e9f-8b5a-4efb-af02-71d7a588c1fc/4/badge)
 * Install it in every Xamarin.Forms project.
 * **iOS**: AppDelegate.cs
     ```cs
@@ -41,7 +41,7 @@ If you need to customize something in Android or iOS you can use inline CSS, for
 
 `<span style="color: green">...</span>`
 
-For underlined text use the <u> tag:
+For underlined text use the &lt;u&gt; tag:
 `<u>Some underlined text</u>`
 
 **For links**: remember to add the schema (http:// https:// tel:// mailto:// ext...)
@@ -54,33 +54,24 @@ For underlined text use the <u> tag:
 * TextColor
 * HorizontalTextAlignment
 
+## Events
+Navigating
+Navigated
 
 ## Custom Properties
 * MaxLines (int)
-* IsHtml (bool)
-* RemoveHtmlTags (bool)
 
 
 ## Usage XAML
 
 ```xaml
-xmlns:htmlLabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+xmlns:htmlLabel="clr-namespace:LabelHtml.Forms.Plugin.Abstractions;assembly=HtmlLabel.Forms.Plugin"
 <htmlLabel:HtmlLabel Text="{Binding HtmlString}"/>
 ```
 
 ```xaml
-xmlns:htmlLabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+xmlns:htmlLabel="clr-namespace:LabelHtml.Forms.Plugin.Abstractions;assembly=HtmlLabel.Forms.Plugin"
 <htmlLabel:HtmlLabel Text="{Binding HtmlString}" htmlLabel:HtmlLabel.MaxLines="2"/>
-```
-
-```xaml
-xmlns:htmlLabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
-<htmlLabel:HtmlLabel Text="{Binding PlainTextString}" htmlLabel:HtmlLabel.IsHtml="False"/>
-```
-
-```xaml
-xmlns:htmlLabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
-<htmlLabel:HtmlLabel Text="{Binding HtmlString}" htmlLabel:HtmlLabel.RemoveHtmlTags="True"/>
 ```
 
 ## Usage C#
@@ -90,6 +81,13 @@ var label = new HtmlLabel();
 label.Text = "..htmlstring.."
 HtmlLabel.SetMaxLines(label, 3);
 ```
+
+## Limitations
+
+* SetMaxLines and LineBreakMode.TailTruncation do not work properly;
+* Using Links and custom fonts together could not work properly on iOS.
+* Images won't be displayed on Android (TextView limitation).
+
 
 ### Contributions
 Contributions are welcome!
